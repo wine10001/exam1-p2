@@ -1,3 +1,0 @@
-/home/user/ee6470/lab02/adder-fifo/build/CMakeFiles/adder-fifo.dir
-/home/user/ee6470/lab02/adder-fifo/build/CMakeFiles/edit_cache.dir
-/home/user/ee6470/lab02/adder-fifo/build/CMakeFiles/rebuild_cache.dir
