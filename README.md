@@ -1,6 +1,6 @@
 # Adder FIFO
 
-Adder circuit model with SystemC FIFO
+Please use SystemC FIFO channels to implement the communication interface of the decimation filter
 
 ## Getting started
 
