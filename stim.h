@@ -8,7 +8,7 @@ using namespace std;
 // WIDTH is defined in adder.h
 const int DEPTH = (1 << WIDTH);
 
-const float x_input_signal[] = {0.500,   0.525,   0.549,   0.574,   0.598,   0.622,   0.646,   0.670,
+const float x_input_signal[] = {0.0, 0.500,   0.525,   0.549,   0.574,   0.598,   0.622,   0.646,   0.670,
                             0.693,   0.715,   0.737,   0.759,   0.780,   0.800,   0.819,   0.838,
                             0.856,   0.873,   0.889,   0.904,   0.918,   0.931,   0.943,   0.954,
                             0.964,   0.972,   0.980,   0.986,   0.991,   0.995,   0.998,   1.000,
@@ -29,24 +29,17 @@ SC_MODULE(stim) {
 
   sc_in_clk i_clk;
   sc_out<bool> o_rst;
-  sc_fifo_out<float> o_n; // x signal
-  sc_fifo_out<float> y_n; // y index
+  sc_fifo_out<float> o_signal; // x signal
   sc_fifo_in<float> i_result; //result
   float t_sum;
 
-  int index = 0;
+  int idx = 0;
   void stim_gen() {
     
-    for (int a = 0; a < 64; a++) {
-      y_n.write(a);
-        for (int k = 0; k < 3; k++) {
-          index = a*2-k+1;
-          if (index < 0) {
-            o_n.write(0);
-          } else {
-            o_n.write(x_input_signal[index]);
-            // cout << x_input_signal[index] << endl;
-          }
+    for (int i = 0; i < 128; i+=2) {
+        for (int j = 0; j < 3; j++) {
+          idx = i+j;
+          o_signal.write(x_input_signal[idx]);
       }
       wait();
       }
